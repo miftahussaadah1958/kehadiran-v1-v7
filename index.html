@@ -39,19 +39,18 @@
     </script>
     
     <style>
-        /* Scoped CSS for Blogger Compatibility */
+        /* Scoped CSS for UI */
         #app-root { min-height: 100vh; background-color: #f8fafc; color: #334155; }
         .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
         .loader { border: 4px solid #f3f3f3; border-top: 4px solid #3b82f6; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        /* Hide scrollbar for clean UI */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        #camera-preview { transform: scaleX(-1); } /* Mirror selfie */
+        #camera-preview { transform: scaleX(-1); } 
 
-        /* CSS KHUSUS UNTUK CETAK PDF (PRINT) YANG SEMPURNA */
+        /* CSS KHUSUS CETAK PDF */
         @media print {
             body * { visibility: hidden; }
             #print-view, #print-view * { visibility: visible; }
@@ -62,14 +61,14 @@
             #print-view table { width: 100%; border-collapse: collapse; margin-top: 10px; }
             #print-view th, #print-view td { border: 1px solid #000 !important; padding: 6px !important; text-align: center; font-size: 11px; color: black !important;}
             #print-view th { background-color: #f1f1f1 !important; -webkit-print-color-adjust: exact; color-adjust: exact; font-weight:bold; }
-            #print-view td:nth-child(2) { text-align: left; } /* Kolom Nama Guru align left */
+            #print-view td:nth-child(2) { text-align: left; } 
             @page { margin: 10mm; size: A4; }
         }
     </style>
 </head>
 <body>
 
-<!-- WADAH KHUSUS CETAK PDF -->
+<!-- WADAH KHUSUS CETAK PDF (Dari V7) -->
 <div id="print-view" class="hidden"></div>
 
 <!-- Root Container -->
@@ -81,13 +80,10 @@
         <p class="text-primary font-semibold animate-pulse">Memproses Data...</p>
     </div>
 
-    <!-- ========================================== -->
     <!-- VIEW: LOGIN -->
-    <!-- ========================================== -->
     <div id="view-login" class="flex-1 flex items-center justify-center p-4 bg-gradient-to-br from-slate-900 to-slate-800 no-print">
         <div class="glass w-full max-w-md rounded-2xl shadow-2xl p-8 transform transition-all">
             <div class="text-center mb-8">
-                <!-- LOGO DINAMIS DARI PENGATURAN -->
                 <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg overflow-hidden border-4 border-white">
                     <img id="login-logo-img" src="https://ui-avatars.com/api/?name=MIS&background=0f172a&color=fff" class="w-full h-full object-cover" alt="Logo Lembaga" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=MIS&background=0f172a&color=fff';">
                 </div>
@@ -118,9 +114,7 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- VIEW: ADMIN PANEL -->
-    <!-- ========================================== -->
+    <!-- VIEW: ADMIN PANEL (Dari V7 Lengkap) -->
     <div id="view-admin" class="hidden flex h-screen bg-slate-50 w-full">
         <!-- Sidebar -->
         <aside class="w-64 bg-primary text-white flex flex-col hidden md:flex no-print">
@@ -146,7 +140,6 @@
 
         <!-- Main Content -->
         <main class="flex-1 flex flex-col h-full overflow-hidden">
-            <!-- Topbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center z-10 no-print">
                 <div class="flex items-center gap-3">
                     <button class="md:hidden text-slate-500 text-xl"><i class="fa-solid fa-bars"></i></button>
@@ -161,12 +154,10 @@
                 </div>
             </header>
 
-            <!-- Scrollable Content -->
             <div class="flex-1 overflow-y-auto p-4 md:p-6 pb-20 no-print" id="main-scroll-area">
                 
                 <!-- Tab: Dashboard -->
                 <div id="admin-tab-dashboard" class="admin-tab-content">
-                    <!-- STATISTIK HARI INI -->
                     <div class="mb-6">
                         <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2"><i class="fa-solid fa-calendar-day text-secondary"></i> STATISTIK HARI INI</h3>
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -200,7 +191,6 @@
                         </div>
                     </div>
 
-                    <!-- STATISTIK KEMARIN -->
                     <div class="mb-6">
                         <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-secondary"></i> STATISTIK KEMARIN</h3>
                         <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
@@ -222,7 +212,6 @@
                         </div>
                     </div>
 
-                    <!-- STATISTIK BULANAN -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                         <div>
                             <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2"><i class="fa-solid fa-calendar-check text-secondary"></i> BULAN INI</h3>
@@ -316,7 +305,6 @@
 
                 <!-- Tab Rekap & Ranking -->
                 <div id="admin-tab-rekap" class="admin-tab-content hidden">
-                    <!-- Top Cards -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
                             <i class="fa-solid fa-medal absolute -right-6 -bottom-6 text-8xl text-white opacity-20"></i>
@@ -403,14 +391,12 @@
                         </div>
                     </div>
 
-                    <!-- AREA TABEL LAPORAN (Untuk View & Base Export Excel) -->
                     <div id="printable-report" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 no-print">
                         <div class="text-center mb-6">
                             <h3 class="font-bold text-xl text-slate-800 uppercase underline">PREVIEW DATA LAPORAN</h3>
                             <p class="text-sm text-slate-600 mt-1" id="lap-periode-teks">Periode: Bulan Ini</p>
                         </div>
 
-                        <!-- Table Laporan (Id export-table untuk SheetJS & Print) -->
                         <div class="overflow-x-auto">
                             <table id="export-table" class="w-full text-left border-collapse whitespace-nowrap">
                                 <thead>
@@ -426,7 +412,6 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tabel-laporan-body">
-                                    <!-- Diisi JS -->
                                 </tbody>
                             </table>
                         </div>
@@ -520,38 +505,11 @@
                                 <div><label class="block text-xs font-bold text-slate-500 mb-1">Nama Kepala Madrasah</label><input type="text" id="set-kepsek-nama" class="w-full p-2.5 border rounded-lg bg-gray-50 text-sm outline-none focus:border-secondary"></div>
                                 <div><label class="block text-xs font-bold text-slate-500 mb-1">NIP</label><input type="text" id="set-kepsek-nip" class="w-full p-2.5 border rounded-lg bg-gray-50 text-sm outline-none focus:border-secondary"></div>
                                 <div><label class="block text-xs font-bold text-slate-500 mb-1">Jabatan</label><input type="text" id="set-kepsek-jabatan" class="w-full p-2.5 border rounded-lg bg-gray-50 text-sm outline-none focus:border-secondary"></div>
-                                <div class="lg:col-span-2"><label class="block text-xs font-bold text-slate-500 mb-1">Upload TTD Digital (PNG transparan)</label><input type="file" id="set-ttd" accept="image/png" class="w-full p-2 border rounded-lg bg-gray-50 text-sm outline-none"></div>
-                                <div><label class="block text-xs font-bold text-slate-500 mb-1">Upload Stempel Sekolah (PNG transparan)</label><input type="file" id="set-stempel" accept="image/png" class="w-full p-2 border rounded-lg bg-gray-50 text-sm outline-none"></div>
                             </div>
                         </div>
 
                         <!-- Tahun Ajaran & Semester -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-                                <div class="p-4 border-b border-slate-100 bg-slate-50 flex items-center gap-2 text-slate-700 font-bold">
-                                    <i class="fa-solid fa-calendar-days"></i> Tahun Ajaran
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex gap-2 mb-4">
-                                        <input type="text" id="input-new-ta" placeholder="Contoh: 2026/2027" class="flex-1 p-2.5 border rounded-lg text-sm bg-gray-50 outline-none focus:border-secondary">
-                                        <button onclick="admin.addTahunAjaran()" class="bg-emerald-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-600 transition text-sm flex items-center gap-2"><i class="fa-solid fa-plus"></i> Tambah</button>
-                                    </div>
-                                    <ul id="list-ta" class="space-y-2">
-                                        <li class="flex justify-between items-center p-3 bg-slate-50 border border-slate-100 rounded-lg">
-                                            <span class="font-bold text-sm text-slate-700">2025/2026<span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full ml-2 font-bold">Aktif</span></span>
-                                            <button class="w-8 h-8 rounded bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition"><i class="fa-solid fa-trash text-xs"></i></button>
-                                        </li>
-                                        <li class="flex justify-between items-center p-3 bg-white border border-slate-100 rounded-lg">
-                                            <span class="font-semibold text-sm text-slate-600">2026/2027</span>
-                                            <div class="flex gap-2">
-                                                <button class="px-2 py-1 rounded bg-slate-100 text-slate-600 hover:bg-emerald-500 hover:text-white transition text-[10px] font-bold">Set Aktif</button>
-                                                <button class="w-8 h-8 rounded bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition"><i class="fa-solid fa-trash text-xs"></i></button>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
                             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden h-fit">
                                 <div class="p-4 border-b border-slate-100 bg-slate-50 flex items-center gap-2 text-slate-700 font-bold">
                                     <i class="fa-solid fa-swatchbook"></i> Semester Aktif
@@ -587,9 +545,7 @@
         </main>
     </div>
 
-    <!-- ========================================== -->
-    <!-- VIEW: GURU PANEL -->
-    <!-- ========================================== -->
+    <!-- VIEW: GURU PANEL (Utuh dari V1) -->
     <div id="view-guru" class="hidden flex flex-col h-screen bg-slate-50 w-full relative no-print">
         <!-- App Bar -->
         <header class="bg-primary text-white p-4 shadow-md flex justify-between items-center sticky top-0 z-20">
@@ -599,10 +555,8 @@
 
         <!-- Main Workspace -->
         <main class="flex-1 overflow-y-auto p-4 pb-24">
-            <!-- Dashboard Info -->
             <div id="guru-tab-home">
                 
-                <!-- IDENTITAS GURU RINGKAS -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 mb-6 flex items-center gap-4 relative overflow-hidden">
                     <div class="absolute right-0 top-0 w-24 h-24 bg-blue-50 rounded-bl-full -z-0 opacity-60"></div>
                     <img src="https://ui-avatars.com/api/?name=Guru&background=0D8ABC&color=fff" id="home-guru-avatar" class="w-16 h-16 rounded-full border-2 border-white shadow-sm relative z-10 object-cover">
@@ -632,7 +586,6 @@
                     <button onclick="guru.openIzin()" class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center justify-center gap-3 hover:border-amber-500 hover:shadow-md transition-all active:scale-95 col-span-2"><div class="w-12 h-12 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center text-xl"><i class="fa-solid fa-envelope-open-text"></i></div><span class="font-bold text-slate-700">Pengajuan Izin / Sakit</span></button>
                 </div>
                 
-                <!-- STATISTIK KEHADIRAN GURU -->
                 <div class="grid grid-cols-4 gap-2 mb-6 text-center">
                     <div class="bg-emerald-50 p-2 rounded-xl border border-emerald-100"><p class="text-[10px] text-emerald-600 font-bold uppercase">Hadir</p><h4 class="text-lg font-bold text-emerald-700" id="guru-stat-hadir">0</h4></div>
                     <div class="bg-amber-50 p-2 rounded-xl border border-amber-100"><p class="text-[10px] text-amber-600 font-bold uppercase">Izin</p><h4 class="text-lg font-bold text-amber-700" id="guru-stat-izin">0</h4></div>
@@ -640,7 +593,6 @@
                     <div class="bg-rose-50 p-2 rounded-xl border border-rose-100"><p class="text-[10px] text-rose-600 font-bold uppercase">Telat</p><h4 class="text-lg font-bold text-rose-700" id="guru-stat-telat">0</h4></div>
                 </div>
 
-                <!-- RIWAYAT DROPDOWN -->
                 <div class="flex justify-between items-center mb-3 px-1">
                     <h3 class="font-bold text-slate-700">Riwayat Presensi</h3>
                     <select id="filter-riwayat-guru" onchange="guru.loadRiwayat()" class="text-xs p-1.5 border border-slate-300 rounded-lg bg-white outline-none font-medium text-slate-600">
@@ -678,7 +630,7 @@
                 </div>
             </div>
 
-            <!-- Absen Camera Modal -->
+            <!-- Absen Camera Modal (Dari V1 - Stabil) -->
             <div id="guru-tab-camera" class="hidden absolute inset-0 z-30 bg-black flex flex-col">
                 <div class="p-4 flex justify-between items-center text-white bg-gradient-to-b from-black/80 to-transparent absolute top-0 w-full z-40">
                     <button onclick="ui.closeCamera()" class="w-10 h-10 bg-white/20 rounded-full backdrop-blur flex items-center justify-center"><i class="fa-solid fa-arrow-left"></i></button>
@@ -711,7 +663,6 @@
             </div>
         </main>
 
-        <!-- Bottom Navigation Mobile -->
         <nav class="bg-white border-t border-slate-200 flex justify-around p-3 pb-safe sticky bottom-0 z-20">
             <button onclick="ui.switchGuruTab('home')" class="guru-nav active flex flex-col items-center gap-1 text-slate-400 hover:text-secondary p-2 transition">
                 <i class="fa-solid fa-house text-xl"></i><span class="text-[10px] font-medium">Home</span>
@@ -725,7 +676,7 @@
         </nav>
     </div>
 
-    <!-- MODAL TAMBAH/EDIT GURU (ADMIN) -->
+    <!-- MODALS (Dari V7 Lengkap) -->
     <div id="modal-guru" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 no-print">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
             <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
@@ -764,7 +715,6 @@
         </div>
     </div>
 
-    <!-- MODAL IMPORT GURU MASAL (ADMIN) -->
     <div id="modal-import-guru" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 no-print">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg flex flex-col overflow-hidden">
             <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
@@ -790,12 +740,19 @@
 
 </div>
 
-<!-- ========================================== -->
-<!-- CORE JAVASCRIPT & LOGIC SPA -->
-<!-- ========================================== -->
+<!-- CORE JAVASCRIPT -->
 <script>
-    const IS_PREVIEW = false; // Ganti ke false saat production
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbyzH9uqy2Gz_oPbRS9AvMaT5c0va_RX5NZemvlziuFOVp1KkO9JWJcC3JlLasPllXWRXg/exec"; 
+    /* ===========================
+       KONFIGURASI PRODUCTION
+    =========================== */
+    const IS_PREVIEW = false; // Ganti false untuk koneksi nyata
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbyzH9uqy2Gz_oPbRS9AvMaT5c0va_RX5NZemvlziuFOVp1KkO9JWJcC3JlLasPllXWRXg/exec";
+
+    const APP_CONFIG = {
+      IS_PREVIEW,
+      GAS_URL,
+      VERSION: "1.0.0"
+    };
 
     let APP_SETTINGS = { lat: -6.495826101620464, lng: 107.11830503158939, radius: 50 };
     let currentUser = null;
@@ -804,23 +761,64 @@
     let absenTypeTemp = "";
     let chartInstances = {};
 
+    // MockDB Admin Lengkap (Dari V7)
+    let mockDB = JSON.parse(localStorage.getItem('absensi_mock_db'));
+    if(!mockDB) {
+        mockDB = {
+            settings: {
+                logo: "https://ui-avatars.com/api/?name=MIS&background=0f172a&color=fff",
+                nama_lembaga: "MIS MIFTAHUSSA'ADAH",
+                npsn: "12345678",
+                nsm: "111222333",
+                telepon: "(021) 1234567",
+                email: "info@mismiftahussaadah.sch.id",
+                website: "www.mismiftahussaadah.sch.id",
+                alamat: "Kp. Tegalracak RT. 018/007, Desa Cariu, Kecamatan Cariu, Kabupaten Bogor",
+                kepsek_nama: "NAMA KEPALA MADRASAH, S.Pd.I",
+                kepsek_nip: "19700101 200001 1 001",
+                kepsek_jabatan: "Kepala Madrasah",
+                semester_aktif: "Ganjil",
+                lat: -6.495826101620464,
+                lng: 107.11830503158939,
+                radius: 50,
+                jam_masuk: "07:00",
+                jam_pulang: "14:00",
+                batas_terlambat: "07:15"
+            },
+            gurus: [
+                {id_guru:'GRU-1', nip:'19800101', nama:'Budi Santoso, S.Pd', mapel:'Guru Kelas', jabatan:'Wali Kelas', tempat_lahir:'Bogor', tgl_lahir:'1980-01-01', jenis_kelamin:'L', alamat:'Cariu', no_hp:'0812345678', email:'budi@mis.edu', pendidikan:'S1 PAI', tgl_masuk:'2015-07-01', status_pegawai:'GTY', username:'guru', password:'guru123', status_akun:'AKTIF'},
+                {id_guru:'GRU-2', nip:'19850202', nama:'Siti Aminah, S.Ag', mapel:'PAI', jabatan:'Guru Bidang', tempat_lahir:'Jakarta', tgl_lahir:'1985-02-02', jenis_kelamin:'P', alamat:'Jonggol', no_hp:'0823456789', email:'siti@mis.edu', pendidikan:'S1 PAI', tgl_masuk:'2018-07-01', status_pegawai:'GTY', username:'siti', password:'siti123', status_akun:'AKTIF'}
+            ]
+        };
+        localStorage.setItem('absensi_mock_db', JSON.stringify(mockDB));
+    }
+
     const api = {
-        call: async (action, data = {}) => {
+        call: async (action, payload = {}) => {
             ui.showLoading();
             try {
-                if (IS_PREVIEW) return await mockAPI.handle(action, data);
-                const response = await fetch(GAS_URL, {
+                if (APP_CONFIG.IS_PREVIEW) return await mockAPI.handle(action, payload);
+                const response = await fetch(APP_CONFIG.GAS_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ action: action, data: data })
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Safe for Blogger preflight
+                    body: JSON.stringify({ action: action, data: payload })
                 });
+                
                 const result = await response.json();
                 ui.hideLoading();
                 return result;
             } catch (error) {
                 ui.hideLoading();
-                console.error("API Error:", error);
-                Swal.fire('Koneksi Gagal', 'Pastikan internet Anda stabil atau cek URL GAS.', 'error');
-                return { success: false };
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Koneksi Server Gagal',
+                    text: 'Akses ke Google Sheets terputus atau URL GAS tidak valid. Mengalihkan ke Mode Preview Offline.',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 6000
+                });
+                return await mockAPI.handle(action, payload);
             }
         }
     };
@@ -828,26 +826,33 @@
     const mockAPI = {
         handle: async (action, data) => {
             return new Promise((resolve) => {
-                setTimeout(() => { // Simulate network delay
+                setTimeout(() => { 
                     ui.hideLoading();
+                    
                     if(action === 'getPublicSettings') {
-                        resolve({success:true, data:{
-                            nama_lembaga: "MIS MIFTAHUSSA'ADAH",
-                            npsn: "60706641",
-                            nsm: "111232010108",
-                            logo: "https://ui-avatars.com/api/?name=MIS&background=0f172a&color=fff"
-                        }});
+                        resolve({success:true, data: mockDB.settings });
                     }
                     else if(action === 'login') {
-                        if(data.username === 'admin' && data.password === 'admin123') resolve({success:true, data:{id_guru:'ADM-1', nama:'Administrator', role:'ADMIN'}});
-                        else if(data.username === 'guru' && data.password === 'guru123') resolve({success:true, data:{id_guru:'GRU-1', nama:'Budi Santoso, S.Pd', role:'GURU', nip:'19800101', mapel:'Guru Kelas', jabatan:'Wali Kelas', tempat_lahir:'Bogor', tgl_lahir:'1980-01-01', jenis_kelamin:'L', alamat:'Cariu, Bogor', no_hp:'08123456', email:'budi@mis.edu', status_pegawai:'GTY', pendidikan:'S1 PAI', tgl_masuk:'2015-07-01', username:'guru', password:'guru123', status_akun:'AKTIF'}});
-                        else resolve({success:false, message:'Username/Password salah!'});
+                        if(data.username === 'admin' && data.password === 'admin123') {
+                            resolve({success:true, data:{id_guru:'ADM-1', nama:'Administrator', role:'ADMIN'}});
+                        } else {
+                            // Cek di DB V7
+                            const guruLogin = mockDB.gurus.find(g => g.username === data.username && g.password === data.password && g.status_akun === 'AKTIF');
+                            if(guruLogin) {
+                                resolve({success:true, data:{...guruLogin, role:'GURU'}});
+                            } else if (data.username === 'guru' && data.password === 'guru123') {
+                                // Fallback aman V1 jika localStorage kotor
+                                resolve({success:true, data:{id_guru:'GRU-1', nip:'19800101', nama:'Budi Santoso, S.Pd', role:'GURU', mapel:'Guru Kelas', jabatan:'Wali Kelas', status_pegawai:'GTY', username:'guru', password:'guru123', status_akun:'AKTIF'}});
+                            } else {
+                                resolve({success:false, message:'Username/Password salah atau akun tidak aktif!'});
+                            }
+                        }
                     }
                     else if(action === 'absenMasuk' || action === 'absenPulang') { resolve({success:true, message:'Presensi & Selfie berhasil direkam!'}); }
                     else if(action === 'ajukanIzin') { resolve({success:true, message:'Pengajuan izin beserta bukti berhasil dikirim!'}); }
                     else if(action === 'getDashboardAdmin') {
                         resolve({success:true, data:{
-                            hari_ini: { total_guru: 25, hadir: 20, belum_hadir: 3, izin: 1, sakit: 1, dinas_luar: 0, cuti: 0, alpha: 0, terlambat: 2 },
+                            hari_ini: { total_guru: mockDB.gurus.length, hadir: 20, belum_hadir: 3, izin: 1, sakit: 1, dinas_luar: 0, cuti: 0, alpha: 0, terlambat: 2 },
                             kemarin: { hadir: 22, izin: 2, alpha: 1, terlambat: 1, persentase: 88 },
                             bulan_ini: { hadir: 450, izin: 12, sakit: 5, alpha: 2, terlambat: 15, persentase: 94 },
                             bulan_lalu: { hadir: 430, persentase: 90, trend: "Naik" },
@@ -857,16 +862,12 @@
                             ],
                             rekap_guru: [
                                 {nama: "Budi Santoso, S.Pd", hadir: 20, izin: 1, alpha: 0, persentase: 95},
-                                {nama: "Siti Aminah, S.Ag", hadir: 18, izin: 2, alpha: 1, persentase: 85},
-                                {nama: "Ahmad Dahlan, M.Pd", hadir: 21, izin: 0, alpha: 0, persentase: 100}
+                                {nama: "Siti Aminah, S.Ag", hadir: 18, izin: 2, alpha: 1, persentase: 85}
                             ]
                         }});
                     }
                     else if(action === 'getDataGuru') {
-                        resolve({success:true, data:[
-                            {id_guru:'GRU-1', nip:'19800101', nama:'Budi Santoso, S.Pd', mapel:'Guru Kelas', jabatan:'Wali Kelas', tempat_lahir:'Bogor', tgl_lahir:'1980-01-01', jenis_kelamin:'L', alamat:'Cariu', no_hp:'0812345678', email:'budi@mis.edu', pendidikan:'S1 PAI', tgl_masuk:'2015-07-01', status_pegawai:'GTY', username:'guru', password:'guru123', status_akun:'AKTIF'},
-                            {id_guru:'GRU-2', nip:'19850202', nama:'Siti Aminah, S.Ag', mapel:'PAI', jabatan:'Guru Bidang', tempat_lahir:'Jakarta', tgl_lahir:'1985-02-02', jenis_kelamin:'P', alamat:'Jonggol', no_hp:'0823456789', email:'siti@mis.edu', pendidikan:'S1 PAI', tgl_masuk:'2018-07-01', status_pegawai:'GTY', username:'siti', password:'siti123', status_akun:'AKTIF'}
-                        ]});
+                        resolve({success:true, data: mockDB.gurus });
                     }
                     else if(action === 'getIzinPending') {
                         resolve({success:true, data:[
@@ -889,7 +890,7 @@
                     }
                     else if(action === 'getAnalitik') {
                         resolve({success:true, data:{
-                            pie: [85, 5, 8, 2], // Hadir, Izin, Sakit, Alpha
+                            pie: [85, 5, 8, 2],
                             bar: { labels: ['Ahmad', 'Budi', 'Siti', 'Joko'], data: [100, 95, 75, 88] },
                             line: { labels: ['Jan','Feb','Mar','Apr','Mei','Jun'], data: [90, 92, 88, 95, 96, 94] }
                         }});
@@ -904,13 +905,33 @@
                             resolve({success:true, stat:{hadir:20, izin:1, alpha:0, telat:2}, data:[{tanggal: 'Kamis, 06:45 WIB', tipe:'Hadir (Masuk)', status:'Tepat Waktu'}, {tanggal: 'Senin, 07:20 WIB', tipe:'Hadir (Masuk)', status:'Terlambat'}]});
                         }
                     }
+                    else if(action === 'saveGuru') {
+                        if(data.id_guru) { 
+                            const idx = mockDB.gurus.findIndex(g => g.id_guru === data.id_guru);
+                            if(idx !== -1) mockDB.gurus[idx] = { ...mockDB.gurus[idx], ...data };
+                        } else { 
+                            mockDB.gurus.push({ ...data, id_guru: 'GRU-' + Date.now() });
+                        }
+                        localStorage.setItem('absensi_mock_db', JSON.stringify(mockDB));
+                        resolve({success:true, message:'Data guru berhasil disimpan.'}); 
+                    }
+                    else if(action === 'deleteGuru') {
+                        mockDB.gurus = mockDB.gurus.filter(g => g.id_guru !== data.id_guru);
+                        localStorage.setItem('absensi_mock_db', JSON.stringify(mockDB));
+                        resolve({success:true, message:'Data guru berhasil dihapus.'});
+                    }
                     else if(action === 'importGuruMassal') {
+                        const newGurus = data.gurus.map((g, index) => ({ ...g, id_guru: 'GRU-' + Date.now() + index }));
+                        mockDB.gurus = [...mockDB.gurus, ...newGurus];
+                        localStorage.setItem('absensi_mock_db', JSON.stringify(mockDB));
                         resolve({success:true, message:`Berhasil mengimpor ${data.gurus.length} data guru ke database.`});
                     }
                     else if(action === 'saveSettingsAll') {
-                        resolve({success:true, message:'Semua pengaturan berhasil disimpan ke database.'});
+                        mockDB.settings = { ...mockDB.settings, ...data };
+                        localStorage.setItem('absensi_mock_db', JSON.stringify(mockDB));
+                        resolve({success:true, message:'Semua pengaturan berhasil disimpan permanen.'});
                     }
-                    else if(action === 'actionIzin' || action === 'saveGuru') { resolve({success:true, message:'Tindakan berhasil disimpan.'}); }
+                    else if(action === 'actionIzin') { resolve({success:true, message:'Tindakan berhasil disimpan.'}); }
                 }, 800);
             });
         }
@@ -930,26 +951,28 @@
 
     const auth = {
         init: () => {
-            // Load Public Settings for Logo, NPSN/NSM and Form Setup
+            if(APP_CONFIG.IS_PREVIEW) {
+                document.getElementById('preview-alert-text').innerHTML = "<span class='text-amber-500 font-bold'><i class='fa-solid fa-triangle-exclamation'></i> MODE PREVIEW AKTIF (Tidak tersambung ke Sheet).</span>";
+            }
+
             api.call('getPublicSettings').then(res => {
                 if(res.success) {
-                    if(res.data.logo) {
-                        document.getElementById('login-logo-img').src = res.data.logo;
-                        if(document.getElementById('set-logo')) document.getElementById('set-logo').value = res.data.logo;
-                    }
-                    if(res.data.nama_lembaga) {
-                        document.getElementById('login-nama-lembaga').innerText = res.data.nama_lembaga;
-                        if(document.getElementById('set-nama-lembaga')) document.getElementById('set-nama-lembaga').value = res.data.nama_lembaga;
-                    }
-                    if(res.data.npsn || res.data.nsm) {
+                    const d = res.data;
+                    if(d.logo) document.getElementById('login-logo-img').src = d.logo;
+                    if(d.nama_lembaga) document.getElementById('login-nama-lembaga').innerText = d.nama_lembaga;
+                    
+                    if(d.npsn || d.nsm) {
                         const npsnNsmEl = document.getElementById('login-npsn-nsm');
                         if(npsnNsmEl) {
-                            npsnNsmEl.innerText = `NPSN: ${res.data.npsn || '-'} | NSM: ${res.data.nsm || '-'}`;
+                            npsnNsmEl.innerText = `NPSN: ${d.npsn || '-'} | NSM: ${d.nsm || '-'}`;
                             npsnNsmEl.classList.remove('hidden');
                         }
-                        if(document.getElementById('set-npsn')) document.getElementById('set-npsn').value = res.data.npsn || '';
-                        if(document.getElementById('set-nsm')) document.getElementById('set-nsm').value = res.data.nsm || '';
                     }
+
+                    // PERBAIKAN BUG GPS: Mencegah parse menghasilkan NaN
+                    if(d.lat && !isNaN(parseFloat(d.lat))) APP_SETTINGS.lat = parseFloat(d.lat);
+                    if(d.lng && !isNaN(parseFloat(d.lng))) APP_SETTINGS.lng = parseFloat(d.lng);
+                    if(d.radius && !isNaN(parseInt(d.radius))) APP_SETTINGS.radius = parseInt(d.radius);
                 }
             });
 
@@ -959,7 +982,6 @@
                 ui.routeBasedOnRole();
             } else { ui.showView('login'); }
             
-            // Set date print
             const d = new Date();
             const months = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
             if(document.getElementById('print-date')) {
@@ -1029,15 +1051,14 @@
             const titles = { 'dashboard': 'Dashboard', 'monitoring': 'Monitoring Live', 'rekap': 'Rekap & Ranking', 'analitik': 'Analitik', 'laporan': 'Laporan', 'dataguru': 'Data Guru', 'izin': 'Persetujuan Izin', 'pengaturan': 'Pengaturan' };
             document.getElementById('admin-header-title').innerText = titles[tabName] || tabName;
 
-            // Panggil API saat tab diklik (Lazy Load)
             if(tabName === 'dataguru') admin.loadDataGuru();
             if(tabName === 'izin') admin.loadPersetujuanIzin();
             if(tabName === 'monitoring') admin.loadMonitoringLive();
             if(tabName === 'rekap') admin.loadRekap();
             if(tabName === 'analitik') admin.loadAnalitik();
             if(tabName === 'laporan') admin.loadLaporan();
+            if(tabName === 'pengaturan') admin.loadPengaturan();
 
-            // Scroll ke atas
             document.getElementById('main-scroll-area').scrollTop = 0;
         },
 
@@ -1063,6 +1084,7 @@
         }
     };
 
+    // FUNGSI GURU SEPENUHNYA DARI V1 YANG STABIL
     const guru = {
         tempBase64Image: null,
         initDashboard: () => {
@@ -1222,7 +1244,6 @@
             if(res.success) Swal.fire('Berhasil!', res.message, 'success');
             else Swal.fire('Gagal', res.message, 'error');
             
-            // Reload history to update status
             guru.loadRiwayat();
         },
 
@@ -1285,6 +1306,7 @@
         }
     };
 
+    // FUNGSI ADMIN SEPENUHNYA DARI V7
     const admin = {
         initDashboard: async () => {
             const res = await api.call('getDashboardAdmin');
@@ -1335,9 +1357,9 @@
                         tableHtml += `
                             <tr class="border-b border-slate-50 hover:bg-slate-50 transition">
                                 <td class="p-3"><p class="font-bold text-slate-700 text-sm">${guru.nama}</p></td>
-                                <td class="p-3 text-sm text-slate-600">${guru.hadir}</td>
-                                <td class="p-3 text-sm text-slate-600">${guru.izin}</td>
-                                <td class="p-3 text-sm text-slate-600">${guru.alpha}</td>
+                                <td class="p-3 text-sm text-slate-600 text-center">${guru.hadir}</td>
+                                <td class="p-3 text-sm text-slate-600 text-center">${guru.izin}</td>
+                                <td class="p-3 text-sm text-slate-600 text-center">${guru.alpha}</td>
                                 <td class="p-3 text-center"><span class="px-2 py-1 rounded-md text-xs font-bold ${pctColor}">${guru.persentase}%</span></td>
                             </tr>
                         `;
@@ -1516,9 +1538,10 @@
             const printHtml = `
                 <div style="position:relative; text-align:center; margin-bottom: 20px; border-bottom: 3px solid black; padding-bottom:15px; padding-top:10px;">
                     <img src="${logoSrc}" style="width:75px; height:75px; object-fit:contain; position:absolute; left:20px; top:10px;" onerror="this.style.display='none'">
-                    <h2 style="font-size: 16px; font-weight: bold; margin: 0; text-transform:uppercase;">YAYASAN FAJAR ILLAHI CARIU</h2>
-                    <h1 style="font-size: 18px; font-weight: bold; margin: 4px 0; letter-spacing: 1px;">MADRASAH IBTIDAIYAH MIFTAHUSSAADAH</h1>
-                    <p style="font-size: 12px; margin: 0;">Kp. Tegalracak RT. 018/007 Desa Cariu Kec. Cariu Kab. Bogor Jawa Barat</p>
+                    <h2 style="font-size: 16px; font-weight: bold; margin: 0; text-transform:uppercase;">YAYASAN PENDIDIKAN ISLAM</h2>
+                    <h1 style="font-size: 24px; font-weight: bold; margin: 4px 0; letter-spacing: 1px;">${namaLembaga}</h1>
+                    <p style="font-size: 12px; margin: 0;">Kp. Tegalracak RT. 018/007, Desa Cariu</p>
+                    <p style="font-size: 12px; margin: 0;">Kecamatan Cariu, Kabupaten Bogor</p>
                 </div>
 
                 <div style="text-align:center; margin-bottom: 20px;">
@@ -1593,7 +1616,6 @@
                 let html = "";
                 res.data.forEach(g => {
                     let stColor = g.status_akun === 'AKTIF' ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700';
-                    // Encode JSON string safely for onclick handler
                     let gStr = encodeURIComponent(JSON.stringify(g));
                     html += `
                         <tr class="hover:bg-slate-50 transition border-b border-slate-50">
@@ -1605,7 +1627,7 @@
                             <td class="p-3 text-center"><span class="px-2 py-1 rounded-md text-[10px] font-bold ${stColor}">${g.status_akun}</span></td>
                             <td class="p-3 text-center">
                                 <button onclick="admin.editGuru('${gStr}')" class="w-8 h-8 rounded-full bg-blue-50 text-blue-500 hover:bg-blue-500 hover:text-white transition"><i class="fa-solid fa-pen"></i></button>
-                                <button class="w-8 h-8 rounded-full bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition"><i class="fa-solid fa-trash"></i></button>
+                                <button onclick="admin.deleteGuru('${g.id_guru}')" class="w-8 h-8 rounded-full bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition"><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
                     `;
@@ -1616,7 +1638,7 @@
 
         openModalGuru: () => {
             document.getElementById('form-guru').reset();
-            document.getElementById('form-guru').removeAttribute('data-id'); // Bersihkan mode edit
+            document.getElementById('form-guru').removeAttribute('data-id'); 
             document.getElementById('modal-guru-title').innerText = 'Tambah Data Guru';
             document.getElementById('modal-guru').classList.remove('hidden');
         },
@@ -1625,7 +1647,6 @@
             const g = JSON.parse(decodeURIComponent(gStr));
             document.getElementById('form-guru').reset();
             
-            // Masukkan data guru ke dalam form
             document.getElementById('g-nip').value = g.nip || '';
             document.getElementById('g-nama').value = g.nama || '';
             document.getElementById('g-jk').value = g.jenis_kelamin || 'L';
@@ -1644,7 +1665,7 @@
             document.getElementById('g-statusakun').value = g.status_akun || 'AKTIF';
             
             document.getElementById('modal-guru-title').innerText = 'Edit Data Guru';
-            document.getElementById('form-guru').setAttribute('data-id', g.id_guru); // Set mode edit
+            document.getElementById('form-guru').setAttribute('data-id', g.id_guru); 
             document.getElementById('modal-guru').classList.remove('hidden');
         },
 
@@ -1654,10 +1675,10 @@
             const pass = document.getElementById('g-pass').value;
             if(!nama || !user || !pass) return Swal.fire('Error', 'Nama Lengkap, Username, dan Password wajib diisi.', 'error');
             
-            const id_guru_edit = document.getElementById('form-guru').getAttribute('data-id'); // Null jika tambah baru
+            const id_guru_edit = document.getElementById('form-guru').getAttribute('data-id'); 
 
             const payload = {
-                id_guru: id_guru_edit, // Dikirim ke backend, jika null artinya tambah baru
+                id_guru: id_guru_edit,
                 nip: document.getElementById('g-nip').value, nama: nama,
                 jenis_kelamin: document.getElementById('g-jk').value, tempat_lahir: document.getElementById('g-tempat').value,
                 tgl_lahir: document.getElementById('g-tgllahir').value, no_hp: document.getElementById('g-hp').value,
@@ -1676,7 +1697,28 @@
             } else Swal.fire('Gagal', res.message, 'error');
         },
 
-        // --- IMPORT GURU MASAL YANG TELAH DIPERBAIKI ---
+        deleteGuru: (id_guru) => {
+            Swal.fire({
+                title: 'Hapus Data Guru?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                cancelButtonColor: '#3b82f6',
+                confirmButtonText: 'Ya, Hapus!'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const res = await api.call('deleteGuru', { id_guru: id_guru });
+                    if(res.success) {
+                        Swal.fire('Terhapus!', res.message, 'success');
+                        admin.loadDataGuru();
+                    } else {
+                        Swal.fire('Gagal', res.message, 'error');
+                    }
+                }
+            })
+        },
+
         openModalImport: () => {
             document.getElementById('file-import-guru').value = "";
             document.getElementById('modal-import-guru').classList.remove('hidden');
@@ -1707,7 +1749,6 @@
                     
                     if(jsonData.length === 0) return Swal.fire('Error', 'File yang diupload kosong atau format tidak sesuai.', 'error');
                     
-                    // PERBAIKAN: Mapping header Excel berbahasa Indonesia ke key database standar backend
                     const mappedData = jsonData.map(row => ({
                         nip: row["NIP"] || "",
                         nama: row["Nama Lengkap"] || "",
@@ -1725,7 +1766,7 @@
                         username: row["Username"] || "",
                         password: row["Password"] || "",
                         status_akun: "AKTIF"
-                    })).filter(g => g.nama !== "" && g.username !== ""); // Filter baris kosong/tidak valid
+                    })).filter(g => g.nama !== "" && g.username !== ""); 
                     
                     if(mappedData.length === 0) return Swal.fire('Error', 'Tidak ada baris data valid. Pastikan kolom "Nama Lengkap" dan "Username" terisi.', 'error');
 
@@ -1734,7 +1775,7 @@
                     const res = await api.call('importGuruMassal', { gurus: mappedData });
                     if(res.success) {
                         Swal.fire('Berhasil', res.message, 'success');
-                        admin.loadDataGuru(); // Refresh tabel setelah impor berhasil
+                        admin.loadDataGuru(); 
                     } else {
                         Swal.fire('Gagal Import', res.message, 'error');
                     }
@@ -1804,6 +1845,32 @@
             input.value = "";
             Swal.fire({toast: true, position: 'top-end', icon: 'success', title: 'Tahun ajaran ditambahkan', showConfirmButton: false, timer: 1500});
         },
+
+        loadPengaturan: async () => {
+            const res = await api.call('getPublicSettings');
+            if(res.success) {
+                const d = res.data;
+                if(document.getElementById('set-logo')) document.getElementById('set-logo').value = d.logo || '';
+                if(document.getElementById('set-nama-lembaga')) document.getElementById('set-nama-lembaga').value = d.nama_lembaga || '';
+                if(document.getElementById('set-npsn')) document.getElementById('set-npsn').value = d.npsn || '';
+                if(document.getElementById('set-nsm')) document.getElementById('set-nsm').value = d.nsm || '';
+                if(document.getElementById('set-telepon')) document.getElementById('set-telepon').value = d.telepon || '';
+                if(document.getElementById('set-email')) document.getElementById('set-email').value = d.email || '';
+                if(document.getElementById('set-website')) document.getElementById('set-website').value = d.website || '';
+                if(document.getElementById('set-alamat')) document.getElementById('set-alamat').value = d.alamat || '';
+                if(document.getElementById('set-kepsek-nama')) document.getElementById('set-kepsek-nama').value = d.kepsek_nama || '';
+                if(document.getElementById('set-kepsek-nip')) document.getElementById('set-kepsek-nip').value = d.kepsek_nip || '';
+                if(document.getElementById('set-kepsek-jabatan')) document.getElementById('set-kepsek-jabatan').value = d.kepsek_jabatan || '';
+                if(document.getElementById('set-semester')) document.getElementById('set-semester').value = d.semester_aktif || '';
+                if(document.getElementById('set-lat')) document.getElementById('set-lat').value = d.lat || '';
+                if(document.getElementById('set-lng')) document.getElementById('set-lng').value = d.lng || '';
+                if(document.getElementById('set-radius')) document.getElementById('set-radius').value = d.radius || '';
+                if(document.getElementById('set-masuk')) document.getElementById('set-masuk').value = d.jam_masuk || '';
+                if(document.getElementById('set-pulang')) document.getElementById('set-pulang').value = d.jam_pulang || '';
+                if(document.getElementById('set-terlambat')) document.getElementById('set-terlambat').value = d.batas_terlambat || '';
+            }
+        },
+
         saveAllSettings: async () => {
             const payload = {
                 logo: document.getElementById('set-logo').value, 
@@ -1832,11 +1899,9 @@
                 APP_SETTINGS.lng = parseFloat(payload.lng);
                 APP_SETTINGS.radius = parseInt(payload.radius);
                 
-                // Pembaruan Live di Login Screen 
                 if(payload.logo) document.getElementById('login-logo-img').src = payload.logo;
                 if(payload.nama_lembaga) document.getElementById('login-nama-lembaga').innerText = payload.nama_lembaga;
                 
-                // Pembaruan NPSN NSM Live
                 const npsnNsmEl = document.getElementById('login-npsn-nsm');
                 if(npsnNsmEl && (payload.npsn || payload.nsm)) {
                     npsnNsmEl.innerText = `NPSN: ${payload.npsn || '-'} | NSM: ${payload.nsm || '-'}`;
@@ -1850,10 +1915,9 @@
         }
     };
 
-    // --- UTILITY ---
     const geo = {
         getDistance: (lat1, lon1, lat2, lon2) => {
-            const R = 6371e3; // Radius bumi dalam meter
+            const R = 6371e3; 
             const φ1 = lat1 * Math.PI/180;
             const φ2 = lat2 * Math.PI/180;
             const Δφ = (lat2-lat1) * Math.PI/180;
@@ -1864,7 +1928,6 @@
         }
     };
 
-    // --- INIT APP ---
     window.onload = () => { auth.init(); };
 
 </script>
